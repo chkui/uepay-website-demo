@@ -7,7 +7,7 @@ const express = require('express'),
     // 请求处理器
     handle = app.getRequestHandler(),
     //端口
-    port = parseInt(process.env.PORT, 10) || 3000
+    port = parseInt(process.env.PORT, 10) || 12000
 
 app.prepare()
     .then(() => {

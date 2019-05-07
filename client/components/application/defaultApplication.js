@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import DefaultLayout from '../layout/defautlLayout'
 import PageLoading from '../loading/pageLoading'
 
 const LoginStatus = {
@@ -18,7 +19,7 @@ class DefaultApplication extends React.Component {
 
     componentDidMount() {
         const _this = this;
-        setTimeout(()=>{_this.setState({login:LoginStatus.Login})}, 2000)
+        setTimeout(()=>{_this.setState({login:LoginStatus.Login})}, 500)
     }
 
     render() {
@@ -30,13 +31,13 @@ class DefaultApplication extends React.Component {
             case LoginStatus.Logout:
                 return (<div>未登陆</div>);
             case LoginStatus.Login:
-                return <Component/>
+                return <DefaultLayout Component={Component}/>
         }
     }
 }
 
 DefaultApplication.propTypes = {
-    Component: PropTypes.element
+    Component: PropTypes.func
 };
 
 export default DefaultApplication

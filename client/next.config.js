@@ -1,6 +1,6 @@
-const withCSS = require('@zeit/next-css');
-const withSass = require('@zeit/next-sass');
-let count = 0;
+const withCSS = require('@zeit/next-css'),
+    withSass = require('@zeit/next-sass'),
+    cssLoaderGetLocalIdent = require("css-loader/lib/getLocalIdent.js");
 
 if (typeof require !== 'undefined') {
     /**
@@ -11,11 +11,31 @@ if (typeof require !== 'undefined') {
      * 主要原因是加载器使用错误，用if语句中这一段代码可以修复。
      * @param file
      */
-    require.extensions['.css'] = file => {}
+    require.extensions['.css'] = file => {
+    }
 }
+
+let count = 0;
 
 module.exports = withCSS(withSass({
     distDir: 'dist', //工作&打包文件生成路径
+    cssModules: true,
+    cssLoaderOptions: {
+        localIdentName: "[local]___[hash:base64:5]",
+        getLocalIdent: (context, localIdentName, localName, options) => {
+            let hz = context.resourcePath.replace(context.rootContext, "");
+            if (/node_modules/.test(hz)) {
+                return localName;
+            } else {
+                return cssLoaderGetLocalIdent(
+                    context,
+                    localIdentName,
+                    localName,
+                    options
+                );
+            }
+        }
+    },
     webpack: function (cfg, opt) {
         const originalEntry = cfg.entry;
         cfg.entry = async () => {
