@@ -12,7 +12,7 @@
 1. `$ npm run dev`
 
 ## 移动端说明
-本按时的UI框架使用的是Antd-mobile
+本案例的UI框架使用的是Antd-mobile
 
 ![demo](http://file.mahoooo.com/res/file/uepay-website-demo-2019-05-07.png)
 
