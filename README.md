@@ -14,6 +14,7 @@
 ## 移动端说明
 本按时的UI框架使用的是Antd-mobile
 
+![demo](http://file.mahoooo.com/res/file/uepay-website-demo-2019-05-07.png)
 
 ## 参考资料
 

@@ -2,17 +2,10 @@ import React from 'react'
 import {ActionSheet, WingBlank, WhiteSpace, Button, Toast} from 'antd-mobile';
 import css from './actions.scss'
 
-const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
-let wrapProps;
-if (isIPhone) {
-    wrapProps = {
-        onTouchStart: e => e.preventDefault(),
-    };
-}
-
 class Actions extends React.Component {
     constructor() {
         super();
+        this.wrapProps =
         this.state = {
             clicked: 'none',
             clicked1: 'none',
@@ -100,11 +93,21 @@ class Actions extends React.Component {
                 message: 'I am description, description, description',
                 maskClosable: true,
                 'data-seed': 'logId',
-                wrapProps,
+                wrapProps:this.wrapProps,
             },
             (buttonIndex) => {
                 this.setState({clicked: BUTTONS[buttonIndex]});
             });
+    }
+
+    componentDidMount() {
+
+        const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
+        if (isIPhone) {
+            this.wrapProps = {
+                onTouchStart: e => e.preventDefault(),
+            };
+        }
     }
 
     render() {

@@ -25,6 +25,7 @@ class DefaultApplication extends React.Component {
     render() {
         const {Component} = this.props,
             {login} = this.state;
+        console.log(login)
         switch (login){
             case LoginStatus.Check:
                 return (<PageLoading/>);
